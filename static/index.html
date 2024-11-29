@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Altitude Air</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Roboto", sans-serif;
+      --primary-blue: #7d35f0;
+    }
+    html {
+      font-size: calc(8px + 0.5vw);
+    }
+    button:enabled {
+      cursor: pointer;
+    }
+    main {
+      background-color: rgba(243, 244, 246, 1);
+      height: 100vh;
+      width: 100vw;
+      display: grid;
+      place-items: center;
+    }
+    .content-cont {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.082),
+        -2px -2px 5px rgba(0, 0, 0, 0.082);
+      max-height: 90vh;
+    }
+    .left-cont {
+      position: relative;
+      --padding: 1rem;
+      padding-left: var(--padding);
+      padding-bottom: var(--padding);
+    }
+    .left-cont-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: var(--padding);
+      background-color: rgba(1, 2, 34, 0.815);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .left-cont-content > h1 {
+      font-weight: bold;
+      color: rgb(219, 219, 219);
+      font-size: 4rem;
+      line-height: 0.9em;
+    }
+    .left-cont img {
+      width: 30rem;
+      height: 45rem;
+      object-fit: cover;
+      object-position: bottom;
+    }
+    .left-cont-content > hr {
+      color: white;
+      margin-inline: auto;
+      width: 4rem;
+      height: 4px;
+      background-color: white;
+      margin-block: 0.8rem;
+    }
+    .left-cont-content > p {
+      color: rgba(255, 255, 255, 0.764);
+      font-size: 0.87rem;
+      line-height: 1.4em;
+    }
+    .registration-form {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      justify-content: center;
+      height: 100%;
+      padding: 2rem;
+      max-width: 90vw;
+    }
+    .registration-form > h2 {
+      color: var(--primary-blue);
+      font-size: 2.5rem;
+      line-height: 1.4em;
+    }
+    .registration-form > p {
+      color: var(--primary-blue);
+      font-weight: bold;
+    }
+    .registration-form > form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: auto;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .registration-form > form > :nth-child(n + 3) {
+      grid-column: 1 / -1;
+    }
+    .registration-form > form > input {
+      padding: 0.8em;
+      border-radius: 4px;
+      border: 1px solid rgb(185, 185, 185);
+      max-width: 100%;
+    }
+    #submit-btn {
+      padding: 0.8em;
+      border-radius: 4px;
+      border: 1px solid rgb(185, 185, 185);
+      background-color: blue;
+      color: white;
+      font-weight: 700;
+      transition: all 0.3s;
+      /* border: transparent solid border; */
+    }
+    #submit-btn:enabled:active {
+      scale: 0.95;
+    }
+    #submit-btn:enabled:hover {
+      background-color: transparent;
+      border: 1px solid blue;
+      color: blue;
+      letter-spacing: 2px;
+    }
+    #submit-btn:disabled {
+      background-color: gray;
+      color: rgb(201, 201, 201);
+      animation: animateLetterSpacing 1s ease-in-out forwards infinite;
+    }
+    .sign-in-btn {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background-color: transparent;
+      border: 2px solid var(--primary-blue);
+      padding: 0.3em 1.5em;
+      border-radius: 4px;
+      color: var(--primary-blue);
+    }
+
+    @keyframes animateLetterSpacing {
+      from {
+        letter-spacing: 1px;
+      }
+      50% {
+        letter-spacing: 5px;
+      }
+      to {
+        letter-spacing: 1px;
+      }
+    }
+
+    @media (max-width: 630px) {
+      .left-cont {
+        display: none;
+      }
+    }
+    @media (max-width: 500px) {
+      .registration-form > form {
+        grid-template-columns: 1fr;
+      }
+
+      .registration-form > h2 {
+        margin-top: 4rem;
+      }
+      .sign-in-btn {
+        left: 2rem;
+      }
+    }
+    @media (min-width: 500px) {
+      .registration-form > form {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (min-width: 630px) {
+      .registration-form > form {
+        grid-template-columns: 1fr;
+      }
+      .registration-form > h2 {
+        margin-top: 4rem;
+      }
+      .sign-in-btn {
+        left: 2rem;
+      }
+    }
+    @media (min-width: 930px) {
+      .registration-form > form {
+        grid-template-columns: 1fr 1fr;
+      }
+      .registration-form > h2 {
+        margin-top: unset;
+      }
+      .sign-in-btn {
+        left: unset;
+      }
+    }
+  </style>
+  <body>
+    <main>
+      <div class="content-cont">
+        <div class="left-cont">
+          <img
+            src="https://images.pexels.com/photos/19828373/pexels-photo-19828373/free-photo-of-view-from-an-airplane.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="Airplane"
+            class=""
+          />
+          <div class="left-cont-content">
+            <h1>Altitude Air</h1>
+            <hr width="5px" />
+            <p>
+              We promise to ensure that your well-being is taken care of while
+              travelling with us. Boasting top in class fleet inventory and a 5
+              star approval for our in-flight experience, you know your're
+              getting the best from Altiude with no altitude
+            </p>
+          </div>
+        </div>
+        <div class="registration-form">
+          <button type="button" class="sign-in-btn" disabled>SIGN IN</button>
+          <h2>Explore & Experience</h2>
+          <p>Get on your most comfortable journey yet. All the way up.</p>
+          <form onsubmit="submitForm(event)">
+            <input
+              type="text"
+              id="first-name"
+              placeholder="First Name"
+              name="firstName"
+              required
+              autofocus
+            />
+            <input
+              type="text"
+              id="last-name"
+              name="lastName"
+              placeholder="Last Name"
+              required
+            />
+            <input
+              name="email"
+              type="email"
+              id="email"
+              placeholder="Email"
+              required
+            />
+            <input
+              name="username"
+              type="username"
+              id="username"
+              placeholder="Username"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              minlength="8"
+              placeholder="Password"
+              required
+            />
+            <input
+              type="password"
+              name="confirmPassword"
+              minlength="8"
+              id="confirm-password"
+              placeholder="Confirm Password"
+              required
+            />
+            <button type="submit" id="submit-btn">GET STARTED</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script>
+    async function submitForm(event) {
+      event.preventDefault();
+
+      const {
+        firstName,
+        lastName,
+        email,
+        username,
+        password,
+        confirmPassword,
+      } = Object.fromEntries(new FormData(event.target));
+
+      if (password !== confirmPassword) {
+        return alert("Passwords do not match.");
+      }
+
+      const submitBtn = document.getElementById("submit-btn");
+      submitBtn.disabled = true;
+      submitBtn.innerText = "......";
+
+      try {
+        const response = await fetch("/api/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json", // Set the content type to JSON
+          },
+
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            password,
+            username,
+          }),
+        });
+
+        const isOk = response.ok;
+        const data = await response.json();
+
+        alert(data.message);
+
+        if (isOk) {
+          event.target.reset();
+        }
+      } catch (error) {
+        return alert("Something Went Wrong");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "GET STARTED";
+      }
+    }
+  </script>
+</html>
